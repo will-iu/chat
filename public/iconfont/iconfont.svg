@@ -1,0 +1,29 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
+<!--
+2013-9-30: Created.
+-->
+<svg>
+<metadata>
+Created by iconfont
+</metadata>
+<defs>
+
+<font id="iconfont" horiz-adv-x="1024" >
+  <font-face
+    font-family="iconfont"
+    font-weight="500"
+    font-stretch="normal"
+    units-per-em="1024"
+    ascent="896"
+    descent="-128"
+  />
+    <missing-glyph />
+    
+    <glyph glyph-name="shuomingshu" unicode="&#58990;" d="M693.8 832.3H208.9C142 832.3 87.7 778 87.7 711.1v-654.3c0-66.9 54.3-121.2 121.2-121.2H815c66.9 0 121.2 54.3 121.2 121.2V589.9L693.8 832.3z m181.9-775.5c0-33.4-27.2-60.6-60.6-60.6H208.9c-33.5 0-60.6 27.2-60.6 60.6V711.2c0 33.5 27.1 60.6 60.6 60.6H602c-0.5-72.6 0.9-181.8 0.9-181.8 0-67 54.3-90.9 121.2-90.9h151.5v-442.3zM724.1 559.6c-33.5 0-60.6 27.1-60.6 60.6V771.8l212.1-212.1H724.1z m0 0M693.9 383H330.2c-16.7 0-30.3-13.5-30.3-30.3s13.6-30.3 30.3-30.3h363.7c16.7 0 30.3 13.6 30.3 30.3-0.1 16.7-13.6 30.3-30.3 30.3z m0 0M693.9 231.4H330.2c-16.7 0-30.3-13.5-30.3-30.3s13.6-30.3 30.3-30.3h363.7c16.7 0 30.3 13.6 30.3 30.3-0.1 16.8-13.6 30.3-30.3 30.3z m0 0"  horiz-adv-x="1024" />
+
+    
+
+
+  </font>
+</defs></svg>

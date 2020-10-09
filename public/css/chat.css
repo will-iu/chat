@@ -1,0 +1,149 @@
+body {
+    position: relative;
+    background-image: url(../img/codder.png);
+    background-size: 100% 100%;
+    /*背景图片固定*/
+    background-attachment: fixed;
+}
+
+.chatbox {
+    position: absolute;
+    width: 750px;
+    height: 550px;
+    left: 0;
+    right: 0;
+    margin: 25px auto;
+}
+
+.box_top {
+    background-color: #17a98c;
+    height: 50px;
+}
+
+.box_top ul li {
+    float: left;
+    box-sizing: border-box;
+    width: 250px;
+    height: 50px;
+    line-height: 50px;
+    font-weight: 800;
+    font-family: '宋体', Courier, monospace;
+}
+
+.role_name {
+    padding-left: 10px;
+    text-align: left;
+    color: white;
+    font-size: 1.6em;
+}
+
+.room_name {
+    text-align: center;
+    color: #FFD700;
+    font-size: 2em;
+}
+
+.left_time {
+    padding-right: 10px;
+    text-align: right;
+    color: #e6e2c3;
+    font-style: italic;
+    font-size: 1.3em;
+}
+
+.box_center {
+    background-color: #e6e7e7;
+    height: 350px;
+    overflow-y: scroll;
+}
+
+.msg {
+    box-sizing: border-box;
+    width: 100%;
+    height: auto;
+    padding: 0 10px;
+    overflow: hidden;
+}
+
+.msg li {
+    float: left;
+    width: 100%;
+    /*占一行*/
+    margin: 5px;
+    color: #549baf;
+}
+
+.my_msg {
+    text-align: right;
+}
+
+/*聊天气泡*/
+.msgbox {
+    /* 使用行内块，确保气泡宽度等于内容长度 */
+    display: inline-block;
+    margin: 0 10px;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 10px;
+    max-width: 60%;
+    color: black;
+    word-wrap: break-word;
+    /*解决英文和数字不换行，不换行的原因————浏览器解读为一个单词*/
+}
+
+/* 高150，宽750px */
+.box_footer {
+    width: 750px;
+    height: 150px;
+    background-color: #fff;
+    box-shadow: 0px -5px 5px #888;
+}
+
+.txtmsg {
+    float: left;
+    box-sizing: border-box;
+    width: 640px;
+    height: 150px;
+    padding: 10px;
+    font-size: 1.4em;
+    /* 不可缩放 */
+    resize: none;
+    /* 去除边框 */
+    border: none;
+    /* 去除轮廓线 */
+    outline: none;
+}
+
+.sendbtn {
+    width: 70px;
+    height: 70px;
+    margin: 40px 20px;
+    background-color: #14474e;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 9px #999;
+    color: white;
+    font: bold 24px "宋体";
+    outline: none;
+    cursor: pointer;
+}
+
+.sendbtn:hover {
+    background-color: #18cea3
+}
+
+.sendbtn:active {
+    background-color: #18cea3;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
+.doorquit {
+    display: block;
+    position: absolute;
+    width: 120px;
+    height: 140px;
+    top: 420px;
+    left: 80px;
+    cursor: pointer;
+}

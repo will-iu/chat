@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>聊天室</title>
+    <link href="./img/favicon.ico" rel="shortcut icon" type="image/x-ico">
+    <link rel="stylesheet" href="./css/base.css">
+    <link rel="stylesheet" href="./css/chat.css">
+</head>
+
+<body>
+    <a class="doorquit" href="/room.html" onclick="return confirm('确定退出吗？');">
+    </a>
+    <div class="chatbox">
+        <div class="box_top">
+            <ul id="room_info">
+
+            </ul>
+        </div>
+
+        <div class="box_center">
+            <ul class="msg" id="chat_msg">
+
+            </ul>
+        </div>
+        <div class="box_footer">
+            <textarea class="txtmsg" name="" id="" rows="10"></textarea>
+            <button class="sendbtn">发送</button>
+        </div>
+    </div>
+    <!-- 引入socket文件就是这样用，不要质疑没有这个路径及文件，报错是因为服务器端口问题 -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="./vendors/jquery-3.5.1.min.js"></script>
+    <script src="./vendors/template-web.js"></script>
+    <script src="./js/roleNames.js"></script>
+    <script src="./js/chat.js"></script>
+
+    <!-- 顶部房间信息模板 -->
+    <script type="text/html" id="roomInfoTpl">
+        <li class="role_name">{{role.role_name}}</li>
+        <li class="room_name">{{room.room_name}}</li>
+        <li class="left_time"></li>
+    </script>
+
+    <!-- 中部消息列表模板 -->
+    <script type="text/html" id="chatMsgTpl">
+        <!-- template循环语法 -->
+        {{each data}}
+        <!-- 条件语法，如果是自己发送的消息，在右侧浮动 -->
+        <li class="{{if $value.role_id._id==role_id}}my_msg{{/if}}">
+            {{$value.role_id.role_name}}&nbsp{{$value.msg_time}}<br>
+            <div class='msgbox'>{{$value.msg_context}}</div>
+        </li>
+        {{/each}}
+    </script>
+</body>
+
+</html>

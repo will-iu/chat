@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>聊天室大厅</title>
+    <link href="./img/favicon.ico" rel="shortcut icon" type="image/x-ico">
+    <link rel="stylesheet" href="./css/base.css">
+    <link rel="stylesheet" href="./css/room.css">
+</head>
+
+<body>
+    <div class="main">
+        <ul class="tab_list">
+            <li class="current">加入的聊天室</li>
+            <li>聊天室大厅</li>
+            <li>创建房间</li>
+        </ul>
+        <div class="tab_con">
+            <div class="tab_item" style="display: block;">
+                <ul class="room_list" id="myRoom">
+
+                </ul>
+                <ul class="page_list" id="pageBox1">
+
+                </ul>
+            </div>
+            <div class="tab_item">
+                <ul class="room_list" id="allRoom">
+
+                </ul>
+                <ul class="page_list" id="pageBox2">
+
+                </ul>
+            </div>
+            <div class="tab_item">
+                <form class="new_room" id="new_room">
+                    <h1>创建你们的专属聊天室</h1>
+                    <label for="room_name">
+                        <span>房间名：</span>
+                    </label>
+                    <input type="text" name="room_name" maxlength="6" autocomplete="off" required="required"
+                        id="room_name">
+                    </br>
+                    <label for="room_detail">
+                        <span>房间描述：</span>
+                    </label>
+                    <input type="text" name="room_detail" maxlength="20" autocomplete="off" required="required"
+                        id="room_detail">
+                    </br>
+                    <label for="room_picture">
+                        <span>房间图片：</span>
+                    </label>
+                    <input type="file" name="room_picture" id="room_picture">
+                    <img class="preview" src="" id="preview">
+                    </br>
+                    <label for="room_left">
+                        <span>人数上限：</span>
+                    </label>
+                    <input type="number" name="room_left" max="12" min="2" step="1" value="6" id="room_left">
+                    </br>
+                    <label for="room_life">
+                        <span>房间存在时间(分钟)：</span>
+                    </label>
+                    <input type="number" name="room_life" min="1" max="10080" value="30" id="room_life">
+                    </br>
+
+                    <!-- 此处有坑，表单中的button默认type是submit，点击会自动提交，所以需要阻止 -->
+                    <button type="button" id="submit">创建房间</button>>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="./vendors/jquery-3.5.1.min.js"></script>
+    <script src="./vendors/template-web.js"></script>
+    <script src="./js/room.js"></script>
+    <!-- 加入过的房间模板 -->
+    <script type="text/html" id="myRoomTpl">
+        {{each myRoom}}
+        <li>
+            <!-- 因为服务器端已配置过静态资源路径，所以href可以简写 -->
+            <a href="/chat.html?id={{$value.room_id._id}}" class="room_item">
+                <img src="{{$value.room_id.room_picture}}" title="{{$value.room_id.room_detail}}" alt="">
+                <h5>{{$value.room_id.room_name}}</h5>
+            </a>
+        </li>
+        {{/each}}
+    </script>
+
+    <script type="text/html" id="allRoomTpl">
+        {{each allRoom}}
+        <li>
+            <!-- 如果房间满了，则修改样式，变灰且不可点击 -->
+            <a href="/chat.html?id={{$value._id}}" class="room_item {{if $value.room_left==0}}dis_pointer{{/if}}">
+                <img src="{{$value.room_picture}}" title="{{$value.room_detail}}" alt="">
+                <h5>{{$value.room_name}}</h5>
+            </a>
+        </li>
+        {{/each}}
+    </script>
+
+    <!-- 加入过的房间分页模板 -->
+    <script type="text/html" id="pageTpl1">
+        <!-- 这里踩了个坑，禁用了a标签默认行为并指定点击事件 出现函数未定义错误，原因是函数所在文件规定了最后加载，此时函数还未定义-->
+        <li><a href="javascript:;" onclick="getMyRoom({{page - 1}})" class="{{if page <= 1}}dis_pointer{{/if}}">«</a>
+        </li>
+        {{each display}}
+        <li><a href="javascript:;" onclick="getMyRoom({{$value}})"
+                class="{{if $value == page}}active{{/if}}">{{$value}}</a></li>
+        {{/each}}
+        <li><a href="javascript:;" onclick="getMyRoom({{page + 1}})"
+                class="{{if page >= totalPage}}dis_pointer{{/if}}">»</a></li>
+    </script>
+
+    <!-- 全部房间分页模板 -->
+    <script type="text/html" id="pageTpl2">
+        <li><a href="javascript:;" onclick="getAllRoom({{page - 1}})" class="{{if page <= 1}}dis_pointer{{/if}}">«</a>
+        </li>
+        {{each display}}
+        <li><a href="javascript:;" onclick="getAllRoom({{$value}})"
+                class="{{if $value == page}}active{{/if}}">{{$value}}</a></li>
+        {{/each}}
+        <li><a href="javascript:;" onclick="getAllRoom({{page + 1}})"
+                class="{{if page >= totalPage}}dis_pointer{{/if}}">»</a></li>
+    </script>
+</body>
+
+</html>
